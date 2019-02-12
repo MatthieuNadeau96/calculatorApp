@@ -15,23 +15,23 @@ export default class App extends Component {
         <View style={styles.keypad}>
           <View style={styles.digitKeys}>
             <View style={styles.buttonRow}>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>0</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>1</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>2</Text></TouchableOpacity>
-            </View>
-            <View style={styles.buttonRow}>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>3</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>4</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>5</Text></TouchableOpacity>
-            </View>
-            <View style={styles.buttonRow}>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>6</Text></TouchableOpacity>
               <TouchableOpacity style={styles.key}><Text style={styles.keyText}>7</Text></TouchableOpacity>
               <TouchableOpacity style={styles.key}><Text style={styles.keyText}>8</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>9</Text></TouchableOpacity>
             </View>
             <View style={styles.buttonRow}>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>9</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>4</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>5</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>6</Text></TouchableOpacity>
+            </View>
+            <View style={styles.buttonRow}>
+              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>1</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>2</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>3</Text></TouchableOpacity>
+            </View>
+            <View style={styles.buttonRow}>
               <TouchableOpacity style={styles.key}><Text style={styles.keyText}>.</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>0</Text></TouchableOpacity>
               <TouchableOpacity style={styles.key}><Text style={styles.keyText}>=</Text></TouchableOpacity>
             </View>
           </View>
