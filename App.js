@@ -9,8 +9,12 @@ import {
 export default class App extends Component {
 
   state = {
-    calculationDisplay: '100',
+    calculationDisplay: '',
     answerDisplay: '50',
+  }
+
+  inputDigit (digit) {
+    this.setState({calculationDisplay: this.state.calculationDisplay+digit })
   }
 
   render() {
@@ -27,24 +31,71 @@ export default class App extends Component {
         <View style={styles.keypad}>
           <View style={styles.digitKeys}>
             <View style={styles.buttonRow}>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>7</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>8</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>9</Text></TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.inputDigit(7)}
+                style={styles.key}>
+                <Text style={styles.keyText}>7</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.inputDigit(8)}
+                style={styles.key}>
+                <Text style={styles.keyText}>8</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.inputDigit(9)}
+                style={styles.key}>
+                <Text style={styles.keyText}>9</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.buttonRow}>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>4</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>5</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>6</Text></TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.inputDigit(4)}
+                style={styles.key}>
+                <Text style={styles.keyText}>4</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.inputDigit(5)}
+                style={styles.key}>
+                <Text style={styles.keyText}>5</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.inputDigit(6)}
+                style={styles.key}>
+                <Text style={styles.keyText}>6</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.buttonRow}>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>1</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>2</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>3</Text></TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.inputDigit(1)}
+                style={styles.key}>
+                <Text style={styles.keyText}>1</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.inputDigit(2)}
+                style={styles.key}>
+                <Text style={styles.keyText}>2</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.inputDigit(3)}
+                style={styles.key}>
+                <Text style={styles.keyText}>3</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.buttonRow}>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>.</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>0</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.key}><Text style={styles.keyText}>=</Text></TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => inputDigit('.')}
+                style={styles.key}>
+                <Text style={styles.keyText}>.</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.inputDigit(0)}
+                style={styles.key}>
+                <Text style={styles.keyText}>0</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.key}>
+                <Text style={styles.keyText}>=</Text>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.operationKeys}>
