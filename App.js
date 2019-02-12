@@ -17,6 +17,10 @@ export default class App extends Component {
     this.setState({calculationDisplay: this.state.calculationDisplay+digit })
   }
 
+  clearDisplay () {
+    this.setState({calculationDisplay: '', answerDisplay: '',})
+  }
+
   render() {
     const { calculationDisplay, answerDisplay } = this.state
 
@@ -99,7 +103,11 @@ export default class App extends Component {
             </View>
           </View>
           <View style={styles.operationKeys}>
-            <TouchableOpacity style={styles.key}><Text style={styles.keyText}>DEL</Text></TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.clearDisplay()}
+              style={styles.key}>
+              <Text style={styles.keyText}>DEL</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.key}><Text style={styles.keyText}>/</Text></TouchableOpacity>
             <TouchableOpacity style={styles.key}><Text style={styles.keyText}>*</Text></TouchableOpacity>
             <TouchableOpacity style={styles.key}><Text style={styles.keyText}>-</Text></TouchableOpacity>
