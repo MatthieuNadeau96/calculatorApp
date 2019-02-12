@@ -35,7 +35,13 @@ export default class App extends Component {
               <TouchableOpacity style={styles.key}><Text style={styles.keyText}>=</Text></TouchableOpacity>
             </View>
           </View>
-          <View style={styles.operationKeys}></View>
+          <View style={styles.operationKeys}>
+            <TouchableOpacity style={styles.key}><Text style={styles.keyText}>DEL</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.key}><Text style={styles.keyText}>/</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.key}><Text style={styles.keyText}>*</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.key}><Text style={styles.keyText}>-</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.key}><Text style={styles.keyText}>+</Text></TouchableOpacity>
+          </View>
         </View>
       </View>
     )
