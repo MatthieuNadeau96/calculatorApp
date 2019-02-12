@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',
-    backgroundColor: '#8b85a6',
+    backgroundColor: '#e8e8e9',
   },
   keyText: {
     fontSize: 40,
