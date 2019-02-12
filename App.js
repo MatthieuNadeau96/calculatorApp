@@ -7,11 +7,23 @@ import {
 } from 'react-native'
 
 export default class App extends Component {
+
+  state = {
+    calculationDisplay: '100',
+    answerDisplay: '50',
+  }
+
   render() {
+    const { calculationDisplay, answerDisplay } = this.state
+
     return (
       <View style={styles.container}>
-        <View style={styles.calculationDisplay}></View>
-        <View style={styles.answerDisplay}></View>
+        <View style={styles.calculationDisplay}>
+          <Text style={styles.calculationDisplayText}>{calculationDisplay}</Text>
+        </View>
+        <View style={styles.answerDisplay}>
+          <Text style={styles.answerDisplayText}>{answerDisplay}</Text>
+        </View>
         <View style={styles.keypad}>
           <View style={styles.digitKeys}>
             <View style={styles.buttonRow}>
@@ -55,10 +67,22 @@ const styles = StyleSheet.create({
   calculationDisplay: {
     flex: 2,
     backgroundColor: '#d4d4d4',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  calculationDisplayText: {
+    fontSize: 70,
   },
   answerDisplay: {
     flex: 1,
     backgroundColor: '#ababab',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  answerDisplayText: {
+    fontSize: 35,
   },
   keypad: {
     flex: 7,
