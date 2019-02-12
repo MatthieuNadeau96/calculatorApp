@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    paddingRight: 10,
   },
   calculationDisplayText: {
     fontSize: 70,
@@ -80,6 +81,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    paddingRight: 10,
   },
   answerDisplayText: {
     fontSize: 35,
