@@ -17,6 +17,13 @@ export default class App extends Component {
     this.setState({calculationDisplay: this.state.calculationDisplay+digit })
   }
 
+  inputDot () {
+    const { calculationDisplay } = this.state
+    if (calculationDisplay.indexOf('.') === -1) {
+      this.setState({calculationDisplay: calculationDisplay+'.'})
+    }
+  }
+
   clearDisplay () {
     this.setState({calculationDisplay: '', answerDisplay: '',})
   }
@@ -87,7 +94,7 @@ export default class App extends Component {
             </View>
             <View style={styles.buttonRow}>
               <TouchableOpacity
-                onPress={() => inputDigit('.')}
+                onPress={() => this.inputDot()}
                 style={styles.key}>
                 <Text style={styles.keyText}>.</Text>
               </TouchableOpacity>
