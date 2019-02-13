@@ -10,19 +10,35 @@ export default class App extends Component {
 
   state = {
     calculationDisplay: '',
-    answerDisplay: '50',
+    answerDisplay: '',
     waitingForOperand: false,
     operator: null,
   }
 
   inputDigit (digit) {
-    this.setState({calculationDisplay: this.state.calculationDisplay+digit })
+    const { calculationDisplay, waitingForOperand, answerDisplay } = this.state
+    if(waitingForOperand) {
+      this.setState({
+        calculationDisplay: calculationDisplay + digit,
+        waitingForOperand: false,
+      })
+    } else {
+      this.setState({calculationDisplay: calculationDisplay+digit })
+    }
   }
 
   inputDecimal () {
-    const { calculationDisplay } = this.state
-    if (calculationDisplay.indexOf('.') === -1) {
-      this.setState({calculationDisplay: calculationDisplay+'.'})
+    const { calculationDisplay, waitingForOperand } = this.state
+    if (waitingForOperand) {
+      this.setState({
+        calculationDisplay: calculationDisplay+'.',
+        waitingForOperand: false
+      })
+    }
+    else {
+      if (calculationDisplay.indexOf('.') === -1) {
+        this.setState({calculationDisplay: calculationDisplay+'.'})
+      }
     }
   }
 
