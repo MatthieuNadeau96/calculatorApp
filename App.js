@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   calculationDisplay: {
-    flex: 2,
+    flex: 3,
     backgroundColor: '#d4d4d4',
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
   },
   keypad: {
-    flex: 7,
+    flex: 6,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
