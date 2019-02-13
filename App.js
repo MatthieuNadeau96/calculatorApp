@@ -11,6 +11,8 @@ export default class App extends Component {
   state = {
     calculationDisplay: '',
     answerDisplay: '50',
+    waitingForOperand: false,
+    operator: null,
   }
 
   inputDigit (digit) {
@@ -22,6 +24,15 @@ export default class App extends Component {
     if (calculationDisplay.indexOf('.') === -1) {
       this.setState({calculationDisplay: calculationDisplay+'.'})
     }
+  }
+
+  performOperation (operator) {
+    this.setState({
+      waitingForOperand: true,
+      operator: operator,
+      calculationDisplay: this.state.calculationDisplay+operator,
+    })
+
   }
 
   clearDisplay () {
@@ -115,10 +126,26 @@ export default class App extends Component {
               style={styles.key}>
               <Text style={styles.keyText}>DEL</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.key}><Text style={styles.keyText}>/</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.key}><Text style={styles.keyText}>*</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.key}><Text style={styles.keyText}>-</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.key}><Text style={styles.keyText}>+</Text></TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.performOperation('/')}
+              style={styles.key}>
+              <Text style={styles.keyText}>/</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.performOperation('*')}
+              style={styles.key}>
+              <Text style={styles.keyText}>*</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.performOperation('-')}
+              style={styles.key}>
+              <Text style={styles.keyText}>-</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.performOperation('+')}
+              style={styles.key}>
+              <Text style={styles.keyText}>+</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
