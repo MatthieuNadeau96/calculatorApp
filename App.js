@@ -48,39 +48,24 @@ export default class App extends Component {
   performOperation (operator) {
     const { calculationDisplay, operand, value, nextValue } = this.state
 
-    // const nextValue = parseFloat(calculationDisplay)
-
-    const operations = {
-      '/': (prevValue, nextValue) => prevValue / nextValue,
-      '*': (prevValue, nextValue) => prevValue * nextValue,
-      '-': (prevValue, nextValue) => prevValue - nextValue,
-      '+': (prevValue, nextValue) => prevValue + nextValue,
-      '=': (prevValue, nextValue) => nextValue
+    switch(operator) {
+      case 'DEL':
+        return this.clearDisplay()
+        break
+      case '/':
+      case '*':
+      case '-':
+      case '+':
+        if(calculationDisplay === "") return
+        this.setState({
+          calculationDisplay: calculationDisplay+operator
+        })
     }
-
-
-    if (value == null) {
-      this.setState({
-        value: nextValue
-      })
-    } else if (operator) {
-      const currentValue = value || 0
-      const computedValue = operations[operand](currentValue, nextValue)
-
-      this.setState({
-        value: computedValue,
-        answerDisplay: computedValue
-      })
-
-    }
-
-
-    this.setState({
-      waitingForOperand: true,
-      operand: operator,
-      calculationDisplay: calculationDisplay+operator,
-    })
-
+    // this.setState({
+    //   waitingForOperand: true,
+    //   operand: operator,
+    //   calculationDisplay: calculationDisplay+operator,
+    // })
   }
 
   clearDisplay () {
