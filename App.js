@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
+let operations = ['DEL', '/', '*', '-', '+']
+
 export default class App extends Component {
 
   state = {
@@ -19,6 +21,15 @@ export default class App extends Component {
 
   inputDigit (digit) {
     const { calculationDisplay, waitingForOperand, answerDisplay } = this.state
+
+    if (digit === '.') {
+      return this.inputDecimal()
+    }
+
+    if (digit === '=') {
+      return this.calculateResult()
+    }
+
     if(waitingForOperand) {
       this.setState({
         calculationDisplay: calculationDisplay + digit,
@@ -56,6 +67,8 @@ export default class App extends Component {
       case '*':
       case '-':
       case '+':
+        const lastChar = calculationDisplay.split('').pop()
+        if(operations.indexOf(lastChar) > 0) return
         if(calculationDisplay === "") return
         this.setState({
           calculationDisplay: calculationDisplay+operator
@@ -74,6 +87,10 @@ export default class App extends Component {
       answerDisplay: '',
       value: null,
     })
+  }
+
+  calculateResult () {
+
   }
 
   render() {
@@ -96,7 +113,6 @@ export default class App extends Component {
       rows.push(<View style={styles.buttonRow}>{row}</View>)
     }
 
-    let operations = ['DEL', '/', '*', '-', '+']
     let operationKeys = []
     for(let i = 0; i < operations.length; i++) {
       operationKeys.push(
