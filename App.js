@@ -9,10 +9,12 @@ import {
 export default class App extends Component {
 
   state = {
+    value: null,
     calculationDisplay: '',
     answerDisplay: '',
     waitingForOperand: false,
-    operator: null,
+    operand: null,
+    nextValue: null,
   }
 
   inputDigit (digit) {
@@ -21,6 +23,7 @@ export default class App extends Component {
       this.setState({
         calculationDisplay: calculationDisplay + digit,
         waitingForOperand: false,
+        nextValue: calculationDisplay
       })
     } else {
       this.setState({calculationDisplay: calculationDisplay+digit })
@@ -43,20 +46,83 @@ export default class App extends Component {
   }
 
   performOperation (operator) {
+    const { calculationDisplay, operand, value, nextValue } = this.state
+
+    // const nextValue = parseFloat(calculationDisplay)
+
+    const operations = {
+      '/': (prevValue, nextValue) => prevValue / nextValue,
+      '*': (prevValue, nextValue) => prevValue * nextValue,
+      '-': (prevValue, nextValue) => prevValue - nextValue,
+      '+': (prevValue, nextValue) => prevValue + nextValue,
+      '=': (prevValue, nextValue) => nextValue
+    }
+
+
+    if (value == null) {
+      this.setState({
+        value: nextValue
+      })
+    } else if (operator) {
+      const currentValue = value || 0
+      const computedValue = operations[operand](currentValue, nextValue)
+
+      this.setState({
+        value: computedValue,
+        answerDisplay: computedValue
+      })
+
+    }
+
+
     this.setState({
       waitingForOperand: true,
-      operator: operator,
-      calculationDisplay: this.state.calculationDisplay+operator,
+      operand: operator,
+      calculationDisplay: calculationDisplay+operator,
     })
 
   }
 
   clearDisplay () {
-    this.setState({calculationDisplay: '', answerDisplay: '',})
+    this.setState({
+      calculationDisplay: '',
+      answerDisplay: '',
+      value: null,
+    })
   }
 
   render() {
     const { calculationDisplay, answerDisplay } = this.state
+
+    let rows = []
+    let nums = [[7,8,9], [4,5,6], [1,2,3], ['.', 0, '=']]
+    for(let i = 0; i < 4; i++) {
+      let row = []
+      for(let j = 0; j < 3; j++) {
+        row.push(
+          <TouchableOpacity
+            key={nums[i][j]}
+            onPress={() => this.inputDigit(nums[i][j])}
+            style={styles.key}>
+            <Text style={styles.keyText}>{nums[i][j]}</Text>
+          </TouchableOpacity>
+        )
+      }
+      rows.push(<View style={styles.buttonRow}>{row}</View>)
+    }
+
+    let operations = ['DEL', '/', '*', '-', '+']
+    let operationKeys = []
+    for(let i = 0; i < operations.length; i++) {
+      operationKeys.push(
+        <TouchableOpacity
+          key={operations[i]}
+          onPress={() => this.performOperation(operations[i])}
+          style={styles.key}>
+          <Text style={styles.keyText}>{operations[i]}</Text>
+        </TouchableOpacity>
+      )
+    }
 
     return (
       <View style={styles.container}>
@@ -68,100 +134,10 @@ export default class App extends Component {
         </View>
         <View style={styles.keypad}>
           <View style={styles.digitKeys}>
-            <View style={styles.buttonRow}>
-              <TouchableOpacity
-                onPress={() => this.inputDigit(7)}
-                style={styles.key}>
-                <Text style={styles.keyText}>7</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.inputDigit(8)}
-                style={styles.key}>
-                <Text style={styles.keyText}>8</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.inputDigit(9)}
-                style={styles.key}>
-                <Text style={styles.keyText}>9</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.buttonRow}>
-              <TouchableOpacity
-                onPress={() => this.inputDigit(4)}
-                style={styles.key}>
-                <Text style={styles.keyText}>4</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.inputDigit(5)}
-                style={styles.key}>
-                <Text style={styles.keyText}>5</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.inputDigit(6)}
-                style={styles.key}>
-                <Text style={styles.keyText}>6</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.buttonRow}>
-              <TouchableOpacity
-                onPress={() => this.inputDigit(1)}
-                style={styles.key}>
-                <Text style={styles.keyText}>1</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.inputDigit(2)}
-                style={styles.key}>
-                <Text style={styles.keyText}>2</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.inputDigit(3)}
-                style={styles.key}>
-                <Text style={styles.keyText}>3</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.buttonRow}>
-              <TouchableOpacity
-                onPress={() => this.inputDecimal()}
-                style={styles.key}>
-                <Text style={styles.keyText}>.</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.inputDigit(0)}
-                style={styles.key}>
-                <Text style={styles.keyText}>0</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.key}>
-                <Text style={styles.keyText}>=</Text>
-              </TouchableOpacity>
-            </View>
+            {rows}
           </View>
           <View style={styles.operationKeys}>
-            <TouchableOpacity
-              onPress={() => this.clearDisplay()}
-              style={styles.key}>
-              <Text style={styles.keyText}>DEL</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.performOperation('/')}
-              style={styles.key}>
-              <Text style={styles.keyText}>/</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.performOperation('*')}
-              style={styles.key}>
-              <Text style={styles.keyText}>*</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.performOperation('-')}
-              style={styles.key}>
-              <Text style={styles.keyText}>-</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.performOperation('+')}
-              style={styles.key}>
-              <Text style={styles.keyText}>+</Text>
-            </TouchableOpacity>
+            {operationKeys}
           </View>
         </View>
       </View>
