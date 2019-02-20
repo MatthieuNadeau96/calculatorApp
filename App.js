@@ -27,7 +27,7 @@ export default class App extends Component {
     }
 
     if (digit === '=') {
-      return this.calculateResult()
+      return this.validate() && this.calculateResult()
     }
 
     if(waitingForOperand) {
@@ -87,6 +87,18 @@ export default class App extends Component {
       answerDisplay: '',
       value: null,
     })
+  }
+
+  validate () {
+    const { calculationDisplay } = this.state
+    switch(calculationDisplay.slice(-1)) {
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+        return false
+    }
+    return true
   }
 
   calculateResult () {
