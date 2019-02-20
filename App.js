@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
+import LinearGradient from 'react-native-linear-gradient'
+
 let operations = ['DEL', '/', '*', '-', '+']
 
 export default class App extends Component {
@@ -138,12 +140,12 @@ export default class App extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.calculationDisplay}>
+        <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#393939', '#2d2d2e', '#1b1c1f']} style={styles.calculationDisplay}>
           <Text style={styles.calculationDisplayText}>{calculationDisplay}</Text>
-        </View>
-        <View style={styles.answerDisplay}>
+        </LinearGradient>
+        <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#393939', '#2d2d2e', '#1b1c1f']} style={styles.answerDisplay}>
           <Text style={styles.answerDisplayText}>{answerDisplay}</Text>
-        </View>
+        </LinearGradient>
         <View style={styles.keypad}>
           <View style={styles.digitKeys}>
             {rows}
@@ -163,7 +165,6 @@ const styles = StyleSheet.create({
   },
   calculationDisplay: {
     flex: 3,
-    backgroundColor: '#413f3f',
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -175,7 +176,6 @@ const styles = StyleSheet.create({
   },
   answerDisplay: {
     flex: 1,
-    backgroundColor: '#413f3f',
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
