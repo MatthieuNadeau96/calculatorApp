@@ -121,7 +121,7 @@ export default class App extends Component {
           </TouchableOpacity>
         )
       }
-      rows.push(<View style={styles.buttonRow}>{row}</View>)
+      rows.push(<View key={[i]} style={styles.buttonRow}>{row}</View>)
     }
 
     let operationKeys = []
