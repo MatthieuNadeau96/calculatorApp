@@ -53,12 +53,17 @@ export default class App extends Component {
   }
 
   inputDecimal () {
-    const { calculationDisplay } = this.state
-    let lastChar = calculationDisplay[calculationDisplay.length -1];
-    if (lastChar === '.') {
-      return
-    } else {
-      this.setState({calculationDisplay: calculationDisplay+'.'})
+    const { calculationDisplay, waitingForOperand, operand } = this.state
+    if (waitingForOperand || operand !== null) {
+      this.setState({
+        calculationDisplay: calculationDisplay+'.',
+        waitingForOperand: false
+      })
+    }
+    else {
+      if (calculationDisplay.indexOf('.') === -1 ) {
+        this.setState({calculationDisplay: calculationDisplay+'.'})
+      }
     }
   }
 
