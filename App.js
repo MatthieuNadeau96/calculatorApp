@@ -90,7 +90,10 @@ export default class App extends Component {
   }
 
   calculateResult () {
-
+    const { calculationDisplay, answerDisplay } = this.state
+    this.setState({
+      answerDisplay: eval(calculationDisplay)
+    })
   }
 
   render() {
