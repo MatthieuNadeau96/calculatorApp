@@ -131,7 +131,7 @@ export default class App extends Component {
           key={operations[i]}
           onPress={() => this.performOperation(operations[i])}
           style={styles.key}>
-          <Text style={styles.keyText}>{operations[i]}</Text>
+          <Text style={styles.operationKeyText}>{operations[i]}</Text>
         </TouchableOpacity>
       )
     }
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
   calculationDisplay: {
     flex: 3,
-    backgroundColor: '#d4d4d4',
+    backgroundColor: '#413f3f',
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -171,10 +171,11 @@ const styles = StyleSheet.create({
   },
   calculationDisplayText: {
     fontSize: 70,
+    color: '#ffffff',
   },
   answerDisplay: {
     flex: 1,
-    backgroundColor: '#ababab',
+    backgroundColor: '#413f3f',
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -182,6 +183,7 @@ const styles = StyleSheet.create({
   },
   answerDisplayText: {
     fontSize: 35,
+    color: '#ffffff',
   },
   keypad: {
     flex: 6,
@@ -190,17 +192,21 @@ const styles = StyleSheet.create({
   },
   digitKeys: {
     flex: 3,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
   },
   key: {
     flex: 1,
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',
-    backgroundColor: '#e8e8e9',
   },
   keyText: {
     fontSize: 40,
+    color: '#414141',
+  },
+  operationKeyText: {
+    fontSize: 40,
+    color: '#606163',
   },
   buttonRow: {
     flex: 1,
@@ -210,6 +216,6 @@ const styles = StyleSheet.create({
   },
   operationKeys: {
     flex: 1,
-    backgroundColor: '#d3e0df',
+    backgroundColor: '#f0f8ff',
   },
 })
