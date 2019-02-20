@@ -21,6 +21,7 @@ export default class App extends Component {
 
   inputDigit (digit) {
     const { calculationDisplay, waitingForOperand, answerDisplay } = this.state
+    console.log(this.state.operand)
 
     if (digit === '.') {
       return this.inputDecimal()
@@ -42,15 +43,15 @@ export default class App extends Component {
   }
 
   inputDecimal () {
-    const { calculationDisplay, waitingForOperand } = this.state
-    if (waitingForOperand) {
+    const { calculationDisplay, waitingForOperand, operand } = this.state
+    if (waitingForOperand || operand !== null) {
       this.setState({
         calculationDisplay: calculationDisplay+'.',
         waitingForOperand: false
       })
     }
     else {
-      if (calculationDisplay.indexOf('.') === -1) {
+      if (calculationDisplay.indexOf('.') === -1 ) {
         this.setState({calculationDisplay: calculationDisplay+'.'})
       }
     }
@@ -71,6 +72,7 @@ export default class App extends Component {
         if(operations.indexOf(lastChar) > 0) return
         if(calculationDisplay === "") return
         this.setState({
+          operand: operator,
           calculationDisplay: calculationDisplay+operator
         })
     }
