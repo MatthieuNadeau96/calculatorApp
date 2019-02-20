@@ -22,6 +22,7 @@ export default class App extends Component {
     answerDisplay: '',
     waitingForOperand: false,
     operand: null,
+    hasDecimals: false,
   }
 
   inputDigit (digit) {
@@ -53,11 +54,13 @@ export default class App extends Component {
   }
 
   inputDecimal () {
-    const { calculationDisplay, waitingForOperand, operand } = this.state
+    const { calculationDisplay, waitingForOperand, operand, hasDecimals } = this.state
+    if (hasDecimals) return
     if (waitingForOperand || operand !== null) {
       this.setState({
         calculationDisplay: calculationDisplay+'.',
-        waitingForOperand: false
+        waitingForOperand: false,
+        hasDecimals: true,
       })
     }
     else {
@@ -94,6 +97,7 @@ export default class App extends Component {
       answerDisplay: '',
       waitingForOperand: false,
       operand: null,
+      hasDecimals: false,
     })
   }
 
