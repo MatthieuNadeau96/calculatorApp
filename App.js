@@ -18,12 +18,10 @@ const plus = <FontAwesome5 size={16} name={'plus'} />
 export default class App extends Component {
 
   state = {
-    value: null,
     calculationDisplay: '',
     answerDisplay: '',
     waitingForOperand: false,
     operand: null,
-    nextValue: null,
   }
 
   inputDigit (digit) {
@@ -55,22 +53,17 @@ export default class App extends Component {
   }
 
   inputDecimal () {
-    const { calculationDisplay, waitingForOperand, operand } = this.state
-    if (waitingForOperand || operand !== null) {
-      this.setState({
-        calculationDisplay: calculationDisplay+'.',
-        waitingForOperand: false
-      })
-    }
-    else {
-      if (calculationDisplay.indexOf('.') === -1 ) {
-        this.setState({calculationDisplay: calculationDisplay+'.'})
-      }
+    const { calculationDisplay } = this.state
+    let lastChar = calculationDisplay[calculationDisplay.length -1];
+    if (lastChar === '.') {
+      return
+    } else {
+      this.setState({calculationDisplay: calculationDisplay+'.'})
     }
   }
 
   performOperation (operator) {
-    const { calculationDisplay, operand, value, nextValue } = this.state
+    const { calculationDisplay, operand, } = this.state
 
     switch(operator) {
       case 'DEL':
@@ -94,7 +87,8 @@ export default class App extends Component {
     this.setState({
       calculationDisplay: '',
       answerDisplay: '',
-      value: null,
+      waitingForOperand: false,
+      operand: null,
     })
   }
 
