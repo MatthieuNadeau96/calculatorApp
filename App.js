@@ -21,7 +21,6 @@ export default class App extends Component {
 
   inputDigit (digit) {
     const { calculationDisplay, waitingForOperand, answerDisplay } = this.state
-    console.log(this.state.operand)
 
     if (digit === '.') {
       return this.inputDecimal()
@@ -76,11 +75,6 @@ export default class App extends Component {
           calculationDisplay: calculationDisplay+operator
         })
     }
-    // this.setState({
-    //   waitingForOperand: true,
-    //   operand: operator,
-    //   calculationDisplay: calculationDisplay+operator,
-    // })
   }
 
   clearDisplay () {
