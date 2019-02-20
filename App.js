@@ -27,7 +27,7 @@ export default class App extends Component {
   }
 
   inputDigit (digit) {
-    const { calculationDisplay, waitingForOperand, answerDisplay } = this.state
+    const { calculationDisplay, waitingForOperand, answerDisplay, operand } = this.state
 
     if (digit === '.') {
       return this.inputDecimal()
@@ -43,8 +43,14 @@ export default class App extends Component {
         waitingForOperand: false,
         nextValue: calculationDisplay
       })
-    } else {
-      this.setState({calculationDisplay: calculationDisplay+digit })
+    } else if (operand !== null) {
+      this.setState({
+        calculationDisplay: calculationDisplay+digit,
+        answerDisplay: eval(calculationDisplay+digit)
+      })
+    }
+    else {
+      this.setState({ calculationDisplay: calculationDisplay+digit })
     }
   }
 
