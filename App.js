@@ -6,9 +6,14 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import LinearGradient from 'react-native-linear-gradient'
 
 let operations = ['DEL', '/', '*', '-', '+']
+const divide = <FontAwesome5 size={16} name={'divide'} />
+const times = <FontAwesome5 size={16} name={'times'} />
+const minus = <FontAwesome5 size={16} name={'minus'} />
+const plus = <FontAwesome5 size={16} name={'plus'} />
 
 export default class App extends Component {
 
@@ -128,14 +133,57 @@ export default class App extends Component {
 
     let operationKeys = []
     for(let i = 0; i < operations.length; i++) {
-      operationKeys.push(
-        <TouchableOpacity
-          key={operations[i]}
-          onPress={() => this.performOperation(operations[i])}
-          style={styles.key}>
-          <Text style={styles.operationKeyText}>{operations[i]}</Text>
-        </TouchableOpacity>
-      )
+      switch(operations[i]) {
+        case '/':
+          operationKeys.push(
+            <TouchableOpacity
+              key={operations[i]}
+              onPress={() => this.performOperation(operations[i])}
+              style={styles.key}>
+              <Text style={styles.operationKeyText}>{divide}</Text>
+            </TouchableOpacity>
+          )
+        break
+        case '*':
+          operationKeys.push(
+            <TouchableOpacity
+              key={operations[i]}
+              onPress={() => this.performOperation(operations[i])}
+              style={styles.key}>
+              <Text style={styles.operationKeyText}>{times}</Text>
+            </TouchableOpacity>
+          )
+        break
+        case '-':
+          operationKeys.push(
+            <TouchableOpacity
+              key={operations[i]}
+              onPress={() => this.performOperation(operations[i])}
+              style={styles.key}>
+              <Text style={styles.operationKeyText}>{minus}</Text>
+            </TouchableOpacity>
+          )
+        break
+        case '+':
+          operationKeys.push(
+            <TouchableOpacity
+              key={operations[i]}
+              onPress={() => this.performOperation(operations[i])}
+              style={styles.key}>
+              <Text style={styles.operationKeyText}>{plus}</Text>
+            </TouchableOpacity>
+          )
+        break
+        default:
+        operationKeys.push(
+          <TouchableOpacity
+            key={operations[i]}
+            onPress={() => this.performOperation(operations[i])}
+            style={styles.key}>
+            <Text style={styles.operationKeyText}>{operations[i]}</Text>
+          </TouchableOpacity>
+        )
+      }
     }
 
     return (
@@ -180,9 +228,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     paddingRight: 10,
+    paddingBottom: 30,
   },
   answerDisplayText: {
-    fontSize: 35,
+    fontSize: 40,
     color: '#ffffff',
   },
   keypad: {
@@ -205,7 +254,7 @@ const styles = StyleSheet.create({
     color: '#414141',
   },
   operationKeyText: {
-    fontSize: 40,
+    fontSize: 26,
     color: '#606163',
   },
   buttonRow: {
