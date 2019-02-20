@@ -81,7 +81,7 @@ export default class App extends Component {
       case '*':
       case '-':
       case '+':
-        const lastChar = calculationDisplay.split('').pop()
+        const lastChar = calculationDisplay[calculationDisplay.length -1];
         if(operations.indexOf(lastChar) > 0) return
         if(calculationDisplay === "") return
         this.setState({
@@ -116,7 +116,11 @@ export default class App extends Component {
   calculateResult () {
     const { calculationDisplay, answerDisplay } = this.state
     this.setState({
-      answerDisplay: eval(calculationDisplay)
+      calculationDisplay: answerDisplay,
+      answerDisplay: '',
+      waitingForOperand: false,
+      operand: null,
+      hasDecimals: false,
     })
   }
 
