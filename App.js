@@ -14,6 +14,8 @@ const divide = <FontAwesome5 size={16} name={'divide'} />
 const times = <FontAwesome5 size={16} name={'times'} />
 const minus = <FontAwesome5 size={16} name={'minus'} />
 const plus = <FontAwesome5 size={16} name={'plus'} />
+const clock = <FontAwesome5 size={18} color={'#16eab7'} name={'clock'} />
+
 
 export default class App extends Component {
 
@@ -207,6 +209,9 @@ export default class App extends Component {
 
     return (
       <View style={styles.container}>
+        <LinearGradient style={styles.pointlessIcon} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#393939', '#2d2d2e', '#1b1c1f']}>
+          <Text>{clock}</Text>
+        </LinearGradient>
         <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#393939', '#2d2d2e', '#1b1c1f']} style={styles.calculationDisplay}>
           <Text style={styles.calculationDisplayText}>{calculationDisplay}</Text>
         </LinearGradient>
@@ -220,6 +225,7 @@ export default class App extends Component {
           <View style={styles.operationKeys}>
             {operationKeys}
           </View>
+          <View style={styles.pointlessView}></View>
         </View>
       </View>
     )
@@ -287,5 +293,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f0f8ff',
     paddingVertical: 15,
+  },
+  pointlessIcon: {
+    paddingTop: 15,
+    paddingRight: 30,
+    alignItems: 'flex-end',
+  },
+  pointlessView: {
+    flex: .25,
+    backgroundColor: '#16eab7'
   },
 })
