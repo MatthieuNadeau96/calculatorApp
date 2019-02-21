@@ -9,7 +9,7 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import LinearGradient from 'react-native-linear-gradient'
 
-let operations = ['DEL', ' / ', ' * ', ' - ', ' + ']
+let operations = ['DEL', '/', '*', '-', '+']
 const divide = <FontAwesome5 size={16} name={'divide'} />
 const times = <FontAwesome5 size={16} name={'times'} />
 const minus = <FontAwesome5 size={16} name={'minus'} />
@@ -17,8 +17,11 @@ const plus = <FontAwesome5 size={16} name={'plus'} />
 
 export default class App extends Component {
 
+  // TODO: make the numbers flex if the get too large to fit on the screen
+  // TODO: add commas
+  // TODO: change font
+  // TODO: add animation for when the answerDisplay becomes the calculationDisplay
   // TODO: add the icons in the calculationDisplay for the operations
-  // TODO:
 
   state = {
     calculationDisplay: '',
@@ -48,7 +51,7 @@ export default class App extends Component {
     } else if (operand !== null) {
       this.setState({
         calculationDisplay: calculationDisplay+digit,
-        answerDisplay: eval(calculationDisplay+digit)
+        answerDisplay: (eval(calculationDisplay+digit)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       })
     }
     else {
@@ -80,10 +83,10 @@ export default class App extends Component {
       case 'DEL':
         return this.clearDisplay()
         break
-      case ' / ':
-      case ' * ':
-      case ' - ':
-      case ' + ':
+      case '/':
+      case '*':
+      case '-':
+      case '+':
         const lastChar = calculationDisplay[calculationDisplay.length -1];
         if(operations.indexOf(lastChar) > 0) return
         if(calculationDisplay === "") return
@@ -119,7 +122,7 @@ export default class App extends Component {
   calculateResult () {
     const { calculationDisplay, answerDisplay } = this.state
     this.setState({
-      calculationDisplay: answerDisplay,
+      calculationDisplay: answerDisplay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
       answerDisplay: '',
       waitingForOperand: false,
       operand: null,
