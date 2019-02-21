@@ -228,11 +228,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   calculationDisplay: {
-    flex: 3,
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingRight: 10,
+    paddingRight: 30,
   },
   calculationDisplayText: {
     fontSize: 70,
@@ -243,12 +243,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingRight: 10,
-    paddingBottom: 30,
+    paddingRight: 30,
+    paddingBottom: 15,
   },
   answerDisplayText: {
     fontSize: 40,
-    color: '#ffffff',
+    color: '#a4a4a4',
   },
   keypad: {
     flex: 6,
@@ -258,6 +258,7 @@ const styles = StyleSheet.create({
   digitKeys: {
     flex: 3,
     backgroundColor: '#ffffff',
+    paddingVertical: 15,
   },
   key: {
     flex: 1,
@@ -282,5 +283,6 @@ const styles = StyleSheet.create({
   operationKeys: {
     flex: 1,
     backgroundColor: '#f0f8ff',
+    paddingVertical: 15,
   },
 })
