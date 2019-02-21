@@ -9,13 +9,16 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import LinearGradient from 'react-native-linear-gradient'
 
-let operations = ['DEL', '/', '*', '-', '+']
+let operations = ['DEL', ' / ', ' * ', ' - ', ' + ']
 const divide = <FontAwesome5 size={16} name={'divide'} />
 const times = <FontAwesome5 size={16} name={'times'} />
 const minus = <FontAwesome5 size={16} name={'minus'} />
 const plus = <FontAwesome5 size={16} name={'plus'} />
 
 export default class App extends Component {
+
+  // TODO: add the icons in the calculationDisplay for the operations
+  // TODO:
 
   state = {
     calculationDisplay: '',
@@ -77,10 +80,10 @@ export default class App extends Component {
       case 'DEL':
         return this.clearDisplay()
         break
-      case '/':
-      case '*':
-      case '-':
-      case '+':
+      case ' / ':
+      case ' * ':
+      case ' - ':
+      case ' + ':
         const lastChar = calculationDisplay[calculationDisplay.length -1];
         if(operations.indexOf(lastChar) > 0) return
         if(calculationDisplay === "") return
